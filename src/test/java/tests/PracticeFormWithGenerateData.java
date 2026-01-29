@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.Attach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
@@ -23,7 +24,6 @@ public class PracticeFormWithGenerateData extends TestBase {
             practiceFormPage.openPage()
                             .removeBanners();
         });
-
         step("Заполняем поля формы "+page, () -> {
             practiceFormPage.setFirstName(fakerGenerateData.fakerFirstName)
                     .setLastName(fakerGenerateData.fakerLastName)
@@ -40,7 +40,6 @@ public class PracticeFormWithGenerateData extends TestBase {
                     .setCity(fakerGenerateData.fakerRandomCity)
                     .clickSubmit();
         });
-
         step("Проверяем результаты итоговой таблицы", () -> {
             practiceFormPage.checkResultTable("Student Name", fakerGenerateData.fakerFirstName + " " + fakerGenerateData.fakerLastName)
                     .checkResultTable("Student Email", fakerGenerateData.fakerEmail)
@@ -51,10 +50,10 @@ public class PracticeFormWithGenerateData extends TestBase {
                     .checkResultTable("Hobbies", fakerGenerateData.fakerRandomHobbies)
                     .checkResultTable("Picture", fakerGenerateData.fakerImage)
                     .checkResultTable("Address", fakerGenerateData.fakerCurAddress)
-                    .checkResultTable("State and City", fakerGenerateData.fakerState + " " + fakerGenerateData.fakerRandomCity)
-                    .closeTable();
+                    .checkResultTable("State and City", fakerGenerateData.fakerState + " " + fakerGenerateData.fakerRandomCity);
+            Attach.screenshotAs("Last screenshot");
+            practiceFormPage.closeTable();
         });
-
 
     }
 }
