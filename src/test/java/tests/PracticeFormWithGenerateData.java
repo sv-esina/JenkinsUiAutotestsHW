@@ -18,7 +18,7 @@ public class PracticeFormWithGenerateData extends TestBase {
 
     @Test
     @DisplayName("Проверка корректности заполнения формы automation-practice-form")
-    void successfulRegistrationTest(){
+    void checkingCorrectFillingOfPracticeFormFields(){
 
         step("Открываем страницу "+baseUrl+page, () -> {
             practiceFormPage.openPage()

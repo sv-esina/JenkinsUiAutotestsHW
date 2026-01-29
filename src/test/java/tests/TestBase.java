@@ -16,17 +16,15 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
 
     @BeforeEach
-    void addListener() {
+    void addListenerToContainStepByStepInformationInAllureReport() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @BeforeAll
-    static void beforeAll() {
+    static void applyingBrowserConfigurations() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-//        Configuration.browser = "chrome";
-//        Configuration.browserVersion = "128.0";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -38,7 +36,7 @@ public class TestBase {
     }
 
     @AfterEach
-    void addAttachments() {
+    void addAttachmentsForAllureReport() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
